@@ -1,0 +1,24 @@
+# Use container-based infrastructure for quicker build start-up
+sudo: false
+# Use generic image to cut start-up time
+language: generic
+env:
+  # Path to 'hadolint' binary
+  HADOLINT: "${HOME}/hadolint"
+install:
+  # Download hadolint binary and set it as executable
+  - curl -sL -o ${HADOLINT} "https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-$(uname -s)-$(uname -m)"
+    && chmod 700 ${HADOLINT}
+script:
+  - ${HADOLINT} --ignore DL3003 --ignore DL3008 Dockerfile
+  - docker build . -t varnav/xrp-node-docker
+  - docker run --rm -d --name xrp-testnet -e "TESTNET=1" varnav/xrp-node-docker
+  - docker run --rm -d --name xrp varnav/xrp-node-docker
+  - sleep 5
+  - docker logs xrp-testnet | head -n 20
+  - docker logs xrp | head -n 20
+  - sleep 15
+  - docker logs --tail 20 xrp-testnet
+  - docker logs --tail 20 xrp
+  - docker stop xrp-testnet
+  - docker stop xrp
