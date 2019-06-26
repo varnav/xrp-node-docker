@@ -5,7 +5,8 @@ ENV LANGUAGE=C.UTF-8
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
 
-RUN apt-get install --no-install-recommends yum-utils alien ssh openssl wget ca-certificates -y && \
+RUN apt-get update && \
+    apt-get install --no-install-recommends yum-utils alien ssh openssl wget ca-certificates -y && \
     cd /tmp && \
     wget https://mirrors.ripple.com/ripple-repo-el7.rpm && \
     rpm -Uvh ripple-repo-el7.rpm && \
