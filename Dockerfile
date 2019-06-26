@@ -20,6 +20,7 @@ RUN apt-get update && \
 
 COPY ./bin /usr/local/bin
 COPY ./config_samples /config_samples
+COPY ./config_samples_testnet /config_samples_testnet
 
 VOLUME /var/lib/rippled/
 
