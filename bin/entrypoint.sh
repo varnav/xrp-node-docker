@@ -1,13 +1,12 @@
 #!/bin/bash
 
-setup.sh
-
 set -ex
 
-mkdir -p /config/
-cp -n /config_samples/* /etc/opt/ripple/
+#mkdir -p /config/
+#cp -n /config_samples/* /etc/opt/ripple/
 
-if [ $TESTNET=1 ] then 
+if [ -n "$TESTNET" ]
+then 
 echo "TESTNET mode"
 cp -n /config_samples_testnet/* /etc/opt/ripple/
 else
