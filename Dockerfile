@@ -1,3 +1,5 @@
+LABEL Maintainer = "Evgeny Varnavskiy <varnavruz@gmail.com>"
+
 FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND=noninteractive
