@@ -1,6 +1,6 @@
-LABEL Maintainer = "Evgeny Varnavskiy <varnavruz@gmail.com>"
-
 FROM ubuntu:18.04
+
+LABEL Maintainer = "Evgeny Varnavskiy <varnavruz@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LANGUAGE=C.UTF-8
